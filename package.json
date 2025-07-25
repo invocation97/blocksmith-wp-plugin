@@ -1,0 +1,30 @@
+{
+  "name": "blocksmith",
+  "version": "1.0.0",
+  "main": "blocksmith.php",
+  "description": "Blocksmith",
+  "author": "Blocksmith",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://blocksmith.site",
+  "scripts": {
+    "start": "wp-scripts start",
+    "build": "wp-scripts build",
+    "build:editor": "wp-scripts build --config webpack.config.js",
+    "build:admin": "wp-scripts build --config webpack.config.js"
+  },
+  "devDependencies": {
+    "@types/wordpress__blocks": "^12.5.18",
+    "@types/wordpress__components": "^23.8.0",
+    "@types/wordpress__data": "^7.0.0",
+    "@types/wordpress__edit-post": "^8.4.2",
+    "@types/wordpress__element": "^2.14.1",
+    "@types/wordpress__plugins": "^6.0.0",
+    "@wordpress/scripts": "^30.20.0"
+  },
+  "dependencies": {
+    "@better-fetch/fetch": "^1.1.18",
+    "@hookform/resolvers": "^5.1.1",
+    "react-hook-form": "^7.61.1",
+    "zod": "^4.0.9"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["dom", "es2015"],
+    "jsx": "react",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "types": [
+      // "wordpress__plugins"
+      // "wordpress__data"
+      //   "wordpress__element",
+      //   "wordpress__components",
+      //   "wordpress__blocks",
+      //   "wordpress__edit-post"
+    ]
+  },
+  "include": ["src/**/*", "src/global.d.ts"],
+  "exclude": ["node_modules"]
+}
