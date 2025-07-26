@@ -1,32 +1,25 @@
 import { BlockContent, blockSchema } from "../schemas/blockSchema";
-import apiFetch from "./api";
+import { apiClient } from "./api";
 
-export const generateBlock = async (
-  token: string,
-  post: {
-    title: string;
-    content: string;
-  }
-): Promise<BlockContent | null> => {
+export const generateBlock = async (post: {
+  title: string;
+  content: string;
+}): Promise<BlockContent | null> => {
   try {
-    const { data, error } = await apiFetch("/agent/generate", {
-      method: "POST",
-      body: {
-        title: post.title,
-        content: post.content,
-      },
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+    const result = await apiClient.generateContent("", {
+      postTitle: post.title,
+      postContent: post.content,
+      // format: "block",
+      // style: "professional",
     });
 
-    if (error) {
-      throw new Error(error.message);
+    if (!result.success) {
+      throw new Error(result.data.message);
     }
 
-    return blockSchema.parse(data);
+    return blockSchema.parse(result.data);
   } catch (error) {
-    console.error(error);
+    console.error("Block generation error:", error);
     return null;
   }
 };

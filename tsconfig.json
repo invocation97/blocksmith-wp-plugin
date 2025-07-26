@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "lib": ["dom", "es2015"],
+    "lib": ["dom", "es2017"],
     "jsx": "react",
     "moduleResolution": "node",
     "esModuleInterop": true,

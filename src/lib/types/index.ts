@@ -1,25 +1,62 @@
 // Global blocksmithData object type
 export interface BlocksmithData {
   ajax_url: string;
-  token: string | null;
+  api_key: string;
+  site_url: string;
+  plugin_version: string;
 }
 
-// Login API response types
-export interface LoginSuccessResponse {
+// Global blocksmithSecurity object type
+export interface BlocksmithSecurity {
+  nonce: string;
+}
+
+// API response types
+export interface ApiSuccessResponse<T = any> {
   success: true;
-  data: {
-    token: string;
-  };
+  data: T;
 }
 
-export interface LoginErrorResponse {
+export interface ApiErrorResponse {
   success: false;
   data: {
     message: string;
   };
 }
 
-export type LoginResponse = LoginSuccessResponse | LoginErrorResponse;
+export type ApiResponse<T = any> = ApiSuccessResponse<T> | ApiErrorResponse;
+
+// API Key management types
+export interface ApiKeyValidationResponse {
+  success: true;
+  data: {
+    message: string;
+  };
+}
+
+export interface ConnectionTestResponse {
+  success: true;
+  data: {
+    message: string;
+  };
+}
+
+export interface ContentGenerationRequest {
+  prompt: string;
+  options?: {
+    format?: string;
+    style?: string;
+    length?: string;
+    [key: string]: any;
+  };
+}
+
+export interface ContentGenerationResponse {
+  content: string;
+  metadata?: {
+    [key: string]: any;
+  };
+}
 
 // Form event types
 export interface InputChangeEvent {
@@ -30,16 +67,18 @@ export interface InputChangeEvent {
 
 // Component state types
 export interface AdminAppState {
-  email: string;
-  password: string;
-  token: string | null;
+  api_key: string;
   status: string;
+  isConnected: boolean;
+  isLoading: boolean;
 }
 
-// Declare global blocksmithData
+// Declare global blocksmithData and blocksmithSecurity
 declare global {
   interface Window {
     blocksmithData: BlocksmithData;
+    blocksmithSecurity: BlocksmithSecurity;
   }
   const blocksmithData: BlocksmithData;
+  const blocksmithSecurity: BlocksmithSecurity;
 }
